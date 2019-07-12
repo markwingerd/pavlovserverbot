@@ -1,6 +1,6 @@
 from discord.ext import commands
 
-from tools import os_utils
+from tools import os_utils, permissions
 
 
 bot = commands.Bot(command_prefix='!')
@@ -21,6 +21,9 @@ async def server_status(ctx):
 
 @bot.command()
 async def test(ctx):
-    await ctx.send('I heard you! {0}'.format(ctx.author))
+    if permissions.authorized(ctx):
+        await ctx.send('I heard you! {0}'.format(ctx.author))
+    else:
+        await ctx.send('You are not authorized to use this command'.format(ctx.author))
 
 bot.run(os_utils.get_env('DISCORD_TOKEN'))
