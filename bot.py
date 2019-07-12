@@ -1,3 +1,5 @@
+import asyncio
+
 from discord.ext import commands
 
 from tools import os_utils, permissions
@@ -28,7 +30,7 @@ async def server_start(ctx):
         await ctx.send('Server is already online')
         return
 
-    os_tools.run_script('server_start.sh')
+    os_utils.run_script('server_start.sh')
     await ctx.send('Starting the server'.format(ctx.author))
     await asyncio.sleep(3)
     if os_utils.get_process():

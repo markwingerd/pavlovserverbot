@@ -11,4 +11,4 @@ def get_process():
     return pid
 
 def run_script(script_name):
-    subprocess.call('scripts/{}'.format(script_name))
+    subprocess.call('scripts/{}'.format(script_name), shell=True)
