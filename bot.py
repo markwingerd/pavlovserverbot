@@ -13,7 +13,7 @@ async def on_ready():
     print('------')
 
 @bot.command()
-async def server_online(ctx):
+async def server_status(ctx):
     if os_utils.get_process():
         await ctx.send('Server is currently online')
     else:
