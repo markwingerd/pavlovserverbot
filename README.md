@@ -26,7 +26,8 @@ sudo apt install git python3 python3-pip
 # Install discord through pip
 pip3 install discord
 
-# Clone this repo
+# Login to your steam user and clone this repo
+sudo su -l steam -s /bin/bash
 git clone https://github.com/markwingerd/pavlovserverbot.git
 
 cd pavlovserverbot

@@ -9,3 +9,6 @@ def get_process():
     process = subprocess.Popen('pgrep PavlovServer', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     pid, err = process.communicate()
     return pid
+
+def run_script(script_name):
+    subprocess.call('scripts/{}'.format(script_name))
