@@ -14,7 +14,24 @@ TODO
 ## Installing
 
 TODO: Add instructions on configuring discord and getting a bot token
-- Add your discord bot token to the enviroment variable `DISCORD_TOKEN`
+
+- Add your discord bot token to the enviroment variable `DISCORD_TOKEN`.
+- Follow the following steps in your community servers terminal
+
+```
+# Install git, python3, and pip
+sudo apt update
+sudo apt install git python3 python3-pip
+
+# Install discord through pip
+pip3 install discord
+
+# Clone this repo
+git clone https://github.com/markwingerd/pavlovserverbot.git
+
+cd pavlovserverbot
+python3 bot.py
+```
 TODO
 
 ## License
