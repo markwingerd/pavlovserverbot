@@ -47,8 +47,8 @@ async def server_shutdown(ctx):
     if not permissions.authorized(ctx):
         await ctx.send('You are not authorized to use this command'.format(ctx.author))
         return
-    if os_utils.get_process():
-        await ctx.send('Server is already online')
+    if not os_utils.get_process():
+        await ctx.send('Server is already offline')
         return
 
     os_utils.run_script('server_shutdown.sh')
