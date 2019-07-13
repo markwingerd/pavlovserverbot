@@ -61,6 +61,24 @@ async def server_shutdown(ctx):
 
 
 @bot.command()
+async def server_shutdown(ctx):
+    if not permissions.authorized(ctx):
+        await ctx.send('You are not authorized to use this command'.format(ctx.author))
+        return
+    if os_utils.get_process():
+        os_utils.run_script('server_shutdown.sh')
+        await ctx.send('Shutting down the server')
+        await asyncio.sleep(3)
+    if not os_utils.get_process():
+        os_utils.run_script('server_start.sh')
+        await ctx.send('Starting the server')
+        await asyncio.sleep(3)
+    if os_utils.get_process():
+        await ctx.send('Server is online')
+    else:
+        await ctx.send('Server is offline')
+
+@bot.command()
 async def test(ctx):
     if not permissions.authorized(ctx):
         await ctx.send('You are not authorized to use this command'.format(ctx.author))
