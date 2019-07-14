@@ -12,3 +12,8 @@ def get_process():
 
 def run_script(script_name):
     subprocess.call('scripts/{}'.format(script_name), shell=True)
+
+def get_file(path):
+    with open(path) as f:
+        lines = [line.rstrip('\n') for line in f.readlines()]
+    return lines

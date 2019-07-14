@@ -81,11 +81,35 @@ async def server_restart(ctx):
 
 
 @bot.command()
+async def map_list(ctx):
+    lines = os_utils.get_file('/home/steam/pavlovserver/Pavlov/Saved/Config/LinuxServer/Game.ini')
+    # Keep all lines that start with MapRotation
+    lines = [line for line in lines if line.startswith('MapRotation')]
+    # TODO: Add html fetching and parsing for beautiful presentation
+    msg = _create_map_list(lines)
+    await ctx.send(msg)
+
+
+@bot.command()
 async def test(ctx):
     if not permissions.authorized(ctx):
         await ctx.send('You are not authorized to use this command'.format(ctx.author))
         return
     await ctx.send('I heard you! {0}'.format(ctx.author))
 
+
+def _create_map_list(lines):
+    url = 'https://steamcommunity.com/sharedfiles/filedetails/?id='
+    msg = []
+    for line in lines:
+        try:
+            ugc = line.split('UGC')[1].split('"')[0]
+        except IndexError:
+            ugc = None
+        if ugc:
+            msg.append('{line} | {url}{ugc}'.format(line=line, url=url, ugc=ugc))
+        else:
+            msg.append('{line}'.format(line=line))
+    return '\n'.join(msg)
 
 bot.run(os_utils.get_env('DISCORD_TOKEN'))
