@@ -12,3 +12,16 @@ def get_process():
 
 def run_script(script_name):
     subprocess.call('scripts/{}'.format(script_name), shell=True)
+
+def get_file(path):
+    with open(path, 'r') as f:
+        lines = [line.rstrip('\n') for line in f.readlines()]
+    return lines
+
+def save_file(path, lines):
+    with open(path, 'w') as f:
+        for line in lines:
+            if line.endswith('\n'):
+                f.write(line)
+            else:
+                f.write('{}\n'.format(line))
