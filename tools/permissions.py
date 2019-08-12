@@ -1,8 +1,8 @@
 from users import USERS
 
 
-def authorized(ctx):
+def authorized(author):
     # Returns true if author is on the authorized users list
-    if str(ctx.author) in USERS:
+    if str(author) in USERS:
         return True
     return False
