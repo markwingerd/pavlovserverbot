@@ -84,7 +84,7 @@ class MyClient(discord.Client):
             await message.channel.send('Server failed to start')
 
     async def server_shutdown(self, message):
-        if not permissions.authorized(message):
+        if not permissions.authorized(message.author):
             await message.channel.send('You are not authorized to use this command'.format(message.author))
             return
         if not os_utils.get_process():
@@ -100,7 +100,7 @@ class MyClient(discord.Client):
             await message.channel.send('Server is offline')
 
     async def server_restart(self, message):
-        if not permissions.authorized(message):
+        if not permissions.authorized(message.author):
             await message.channel.send('You are not authorized to use this command'.format(message.author))
             return
 
@@ -126,7 +126,7 @@ class MyClient(discord.Client):
         await message.channel.send(msg)
 
     async def map_remove(self, message, map_):
-        if not permissions.authorized(message):
+        if not permissions.authorized(message.author):
             await message.channel.send('You are not authorized to use this command'.format(message.author))
             return
 
@@ -135,7 +135,7 @@ class MyClient(discord.Client):
         os_utils.save_file(GAME_INI, lines)
 
     async def map_add(self, message, map_, mode='SND'):
-        if not permissions.authorized(message):
+        if not permissions.authorized(message.author):
             await message.channel.send('You are not authorized to use this command'.format(message.author))
             return
 
